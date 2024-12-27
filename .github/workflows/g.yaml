@@ -38,14 +38,14 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: jkjoy/photos 
-        path: /
+        path: target-repo
         token: ${{ secrets.TOKEN }}  
 
     # 步骤 6: 将生成的文件复制到目标仓库
     - name: Copy generated files to target repository
       run: |
-        cp -r index/  /  
-        cp -r assets/  /  
+        cp -r index/  target-repo/  
+        cp -r assets/  target-repo/  
 
     # 步骤 7: 提交并推送更改到目标仓库
     - name: Commit and push changes to target repository
