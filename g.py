@@ -4,8 +4,8 @@ from jinja2 import Template
 
 # 定义图片目录
 photos_dir = 'photos'  # 原始图片目录
-thumb_dir = 'index/images/thumbs'  # 缩略图目录
-full_dir = 'index/images/fulls'    # 原图目录
+thumb_dir = 'images/thumbs'  # 缩略图目录
+full_dir = 'images/fulls'    # 原图目录
 
 # 创建缩略图和原图目录
 os.makedirs(thumb_dir, exist_ok=True)

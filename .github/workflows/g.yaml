@@ -46,6 +46,7 @@ jobs:
       run: |
         cp -r index/*  target-repo/  
         cp -r assets/  target-repo/  
+        cp -r images/     target-repo/
 
     # 步骤 7: 提交并推送更改到目标仓库
     - name: Commit and push changes to target repository
