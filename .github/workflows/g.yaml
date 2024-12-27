@@ -31,6 +31,7 @@ jobs:
     # 步骤 4: 运行 Python 脚本
     - name: Run Python script
       run: |
+        mkdir index
         python g.py
 
     # 步骤 5: 克隆目标仓库
