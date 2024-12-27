@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>相册</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html"><strong>HOME</strong></a></h1>
+						<nav>
+							<ul>
+								<li><a href="#footer" class="icon fa-info-circle">About</a></li>
+							</ul>
+						</nav>
+					</header>
+				<!-- Main -->
+					<div id="main">
+						{% for image in images %}
+						<article class="thumb">
+							<a href="{{ image.full_path }}" class="image"><img src="{{ image.thumb_path }}" alt="{{ image.title }}" loading="lazy" /></a>
+							<h2>{{ image.title }}</h2>
+							<p>{{ image.description }}</p>
+						</article>
+						{% endfor %}
+					</div>
+								<!-- 分页导航 -->
+								<div id="pagination" style="text-align: center; margin-top: 20px;">
+									{% if current_page > 1 %}
+										<a href="{% if current_page == 2 %}index.html{% else %}index-{{ current_page - 1 }}.html{% endif %}" class="button">上一页</a>
+									{% endif %}
+									<span>第 {{ current_page }} 页 / 共 {{ total_pages }} 页</span>
+									{% if current_page < total_pages %}
+										<a href="index-{{ current_page + 1 }}.html" class="button">下一页</a>
+									{% endif %}
+								</div>	
+				<!-- Footer -->
+					<footer id="footer" class="panel">
+						<div class="inner split">
+							<div>
+								<section>
+									<h2>Magna feugiat sed adipiscing</h2>
+									<p>Nulla consequat, ex ut suscipit rutrum, mi dolor tincidunt erat, et scelerisque turpis ipsum eget quis orci mattis aliquet. Maecenas fringilla et ante at lorem et ipsum. Dolor nulla eu bibendum sapien. Donec non pharetra dui. Nulla consequat, ex ut suscipit rutrum, mi dolor tincidunt erat, et scelerisque turpis ipsum.</p>
+								</section>
+								<section>
+									<h2>Follow me on ...</h2>
+									<ul class="icons">
+										<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+										<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+										<li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									</ul>
+								</section>
+								<p class="copyright">
+									&copy; Unttled. More Templates <a href="https://www.webmoban.net" target="_blank" title="网站模板">网站模板</a> - Collect from <a href="https://www.webmoban.net" title="网页模板" target="_blank">网页模板</a>.
+								</p>
+							</div>
+						</div>
+					</footer>
+			</div>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>
