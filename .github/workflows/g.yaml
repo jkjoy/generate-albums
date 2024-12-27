@@ -35,9 +35,9 @@ jobs:
     - name: Checkout target repository
       uses: actions/checkout@v3
       with:
-        repository: jkjoy/photos  # 替换为目标仓库的 owner/repo
+        repository: jkjoy/photos 
         path: /
-        token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub Token 进行认证
+        token: ${{ secrets.TOKEN }}  
 
     # 步骤 6: 将生成的文件复制到目标仓库
     - name: Copy generated files to target repository
