@@ -35,11 +35,17 @@ for root, dirs, files in os.walk(photos_dir):
                 # 复制原图到 fulls 目录（不压缩）
                 shutil.copyfile(original_path, full_path)
 
+                # 设置标题
+                if root == photos_dir:
+                    title = '分享生活'  # 根目录下的图片使用默认标题
+                else:
+                    title = os.path.basename(root)  # 子目录下的图片使用子目录名称作为标题
+
                 # 添加图片信息
                 images.append({
                     'full_path': full_path.replace('\\', '/'),  # 替换反斜杠为正斜杠
                     'thumb_path': thumb_path.replace('\\', '/'),  # 替换反斜杠为正斜杠
-                    'title': os.path.splitext(filename)[0],  # 使用文件名作为标题
+                    'title': title,  # 使用子目录名称或默认标题
                     'description': f"{filename}"  # 可以替换为实际描述
                 })
             except Exception as e:
