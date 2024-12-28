@@ -43,11 +43,18 @@ jobs:
         token: ${{ secrets.TOKEN }}  
 
     # 步骤 6: 清空目标仓库
+
+    - name: Check if target repository is cloned
+      run: |
+        if [ ! -d "target-repo/.git" ]; then
+          echo "Error: Target repository not cloned or .git directory missing"
+          exit 1
+        fi
+  
     - name: Clean target repository
       run: |
         cd target-repo
-        # 删除除了 .git 目录之外的所有文件和文件夹
-        find . -path ./.git -prune -o -exec rm -rf {} + 2> /dev/null
+        find . ! -path './.git*' ! -path '.' -exec rm -rf {} +
 
     # 步骤 7: 将生成的文件复制到目标仓库
     - name: Copy generated files to target repository
