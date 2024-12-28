@@ -4,12 +4,19 @@
 
 可以自行修改模板
 
+>!TIPS
+注意
+
 ## 使用方法
+ 
 
-修改`github\workflows\g.yaml`中的`repository`为你想要生成相册的仓库名称
+1. 点击`Use this template`创建一个新的仓库
 
-在action中设置secret
+在`action`中设置`secret`
 - `TOKEN`为你的github token
+- `REPO`为你想要生成相册的仓库名称 如`username/repo`
+
+## 目录结构
 
 `template.html`为模板文件,可自行调整 标题 等
 

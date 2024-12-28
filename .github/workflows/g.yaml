@@ -42,14 +42,21 @@ jobs:
         path: target-repo
         token: ${{ secrets.TOKEN }}  
 
-    # 步骤 6: 将生成的文件复制到目标仓库
+    # 步骤 6: 清空目标仓库
+    - name: Clean target repository
+      run: |
+        cd target-repo
+        # 删除除了 .git 目录之外的所有文件和文件夹
+        find . -path ./.git -prune -o -exec rm -rf {} + 2> /dev/null
+
+    # 步骤 7: 将生成的文件复制到目标仓库
     - name: Copy generated files to target repository
       run: |
         cp -r index/*  target-repo/  
         cp -r assets/  target-repo/  
         cp -r images/  target-repo/
 
-    # 步骤 7: 提交并推送更改到目标仓库
+    # 步骤 8: 提交并推送更改到目标仓库
     - name: Commit and push changes to target repository
       run: |
         cd target-repo
