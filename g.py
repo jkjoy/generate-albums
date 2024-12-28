@@ -29,8 +29,8 @@ for root, dirs, files in os.walk(photos_dir):
                         img = img.convert('RGB')
 
                     # 生成缩略图
-                    img.thumbnail((200, 200))  # 缩略图大小为 200x200
-                    img.save(thumb_path, quality=95)  # 提高压缩质量
+                    img.thumbnail((400, 400))  # 缩略图大小 
+                    img.save(thumb_path, quality=80)  # 压缩质量
 
                 # 复制原图到 fulls 目录（不压缩）
                 shutil.copyfile(original_path, full_path)
