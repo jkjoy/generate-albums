@@ -38,7 +38,7 @@ jobs:
     - name: Checkout target repository
       uses: actions/checkout@v3
       with:
-        repository: jkjoy/photos 
+        repository: ${{ secrets.REPO }}  
         path: target-repo
         token: ${{ secrets.TOKEN }}  
 
