@@ -15,6 +15,13 @@ os.makedirs(full_dir, exist_ok=True)
 # 获取图片文件列表（支持子目录）
 images = []
 for root, dirs, files in os.walk(photos_dir):
+    # 查找当前目录下的 `描述.txt` 文件
+    description_file = os.path.join(root, '描述.txt')
+    default_description = None
+    if os.path.exists(description_file):
+        with open(description_file, 'r', encoding='utf-8') as f:
+            default_description = f.read().strip()  # 读取 `描述.txt` 的内容
+
     for filename in files:
         if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
             original_path = os.path.join(root, filename)
@@ -41,12 +48,21 @@ for root, dirs, files in os.walk(photos_dir):
                 else:
                     title = os.path.basename(root)  # 子目录下的图片使用子目录名称作为标题
 
+                # 设置描述
+                description = filename  # 默认描述为文件名
+                txt_file = os.path.join(root, os.path.splitext(filename)[0] + '.txt')  # 查找同名的txt文件
+                if os.path.exists(txt_file):  # 如果存在同名的txt文件
+                    with open(txt_file, 'r', encoding='utf-8') as f:
+                        description = f.read().strip()  # 读取txt文件内容作为描述
+                elif default_description is not None:  # 如果存在 `描述.txt` 文件
+                    description = default_description  # 使用 `描述.txt` 的内容作为描述
+
                 # 添加图片信息
                 images.append({
                     'full_path': full_path.replace('\\', '/'),  # 替换反斜杠为正斜杠
                     'thumb_path': thumb_path.replace('\\', '/'),  # 替换反斜杠为正斜杠
                     'title': title,  # 使用子目录名称或默认标题
-                    'description': f"{filename}"  # 可以替换为实际描述
+                    'description': description  # 使用txt文件内容或默认描述
                 })
             except Exception as e:
                 print(f"无法处理文件 {original_path}，错误：{e}")
