@@ -40,7 +40,7 @@ for root, dirs, files in os.walk(photos_dir):
                     'full_path': full_path.replace('\\', '/'),  # 替换反斜杠为正斜杠
                     'thumb_path': thumb_path.replace('\\', '/'),  # 替换反斜杠为正斜杠
                     'title': os.path.splitext(filename)[0],  # 使用文件名作为标题
-                    'description': f"Description for {filename}"  # 可以替换为实际描述
+                    'description': f"{filename}"  # 可以替换为实际描述
                 })
             except Exception as e:
                 print(f"无法处理文件 {original_path}，错误：{e}")
