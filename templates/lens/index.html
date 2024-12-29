@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>我的相册</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload-0 is-preload-1 is-preload-2">
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Header -->
+					<header id="header">
+						<h1>个人相册</h1>
+						<p>演示相册,图片来源于B站UP 请给广末凉子面子 </p>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/jkjoy" class="icon brands fa-github" target="_blank"><span class="label">Github</span></a></li>
+							<li><a href="mailto:imsunpw@gmail.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+					</header>
+
+				<!-- Thumbnail -->
+					<section id="thumbnails">
+						{% for image in images %}
+						<article>
+							<a class="thumbnail" href="{{ image.full_path }}" data-position="left center"><img src="{{ image.thumb_path }}" alt="" /></a>
+							<h2>{{ image.title }}</h2>
+							<p>{{ image.description }}</p>
+						</article>
+						{% endfor %}
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>&copy; 老孙博客.</li><li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.</li><li> <a href="https://github.com/jkjoy/generate-albums" title="项目地址" target="_blank">项目地址</a>.</li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

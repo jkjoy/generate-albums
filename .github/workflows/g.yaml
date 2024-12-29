@@ -31,8 +31,7 @@ jobs:
     # 步骤 4: 运行 Python 脚本
     - name: Run Python script
       run: |
-        mkdir index
-        python g.py
+        python lens.py
 
     # 步骤 5: 克隆目标仓库
     - name: Checkout target repository
@@ -59,9 +58,7 @@ jobs:
     # 步骤 7: 将生成的文件复制到目标仓库
     - name: Copy generated files to target repository
       run: |
-        cp -r index/*  target-repo/  
-        cp -r assets/  target-repo/  
-        cp -r images/  target-repo/
+        cp -r output/*  target-repo/  
 
     # 步骤 8: 提交并推送更改到目标仓库
     - name: Commit and push changes to target repository
