@@ -1,6 +1,6 @@
 import os
 import shutil
-from PIL import Image
+from PIL import Image, ExifTags
 from jinja2 import Template
 
 # 定义图片目录
@@ -35,12 +35,42 @@ for root, dirs, files in os.walk(photos_dir):
                     if img.mode == 'RGBA':
                         img = img.convert('RGB')
 
+                    # 去除 EXIF 中的定位信息
+                    if 'exif' in img.info:
+                        exif_data = img.info['exif']
+                        exif_dict = {}
+                        try:
+                            exif_dict = dict(img._getexif().items()) if img._getexif() else {}
+                        except Exception:
+                            pass
+
+                        # 检查并删除 GPS 标签
+                        gps_tags = [tag for tag, name in ExifTags.TAGS.items() if name == 'GPSInfo']
+                        if gps_tags:
+                            for tag in gps_tags:
+                                if tag in exif_dict:
+                                    del exif_dict[tag]  # 删除 GPS 信息
+
+                        # 重新生成 EXIF 数据
+                        from PIL.ExifTags import TAGS
+                        new_exif = b''
+                        if exif_dict:
+                            from PIL import Image
+                            new_exif = Image.Exif()
+                            for tag_id, value in exif_dict.items():
+                                tag_name = TAGS.get(tag_id, tag_id)
+                                new_exif[tag_name] = value
+                            new_exif = new_exif.tobytes()
+
+                        # 保存去除定位信息后的图片
+                        img.save(full_path, quality=95, exif=new_exif)
+                    else:
+                        # 如果没有 EXIF 数据，直接保存
+                        img.save(full_path, quality=95)
+
                     # 生成缩略图
                     img.thumbnail((400, 400))  # 缩略图大小 
                     img.save(thumb_path, quality=80)  # 压缩质量
-
-                # 复制原图到 fulls 目录（不压缩）
-                shutil.copyfile(original_path, full_path)
 
                 # 设置标题
                 if root == photos_dir:
