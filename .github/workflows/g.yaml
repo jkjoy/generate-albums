@@ -1,4 +1,4 @@
-name: Run Python Script and Push
+name: 脚本运行并推送到目标仓库
 
 on:
   push:
@@ -10,58 +10,49 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 步骤 1: 克隆当前仓库
-    - name: Checkout current repository
+    - name: 克隆当前仓库
       uses: actions/checkout@v3
 
-    # 步骤 2: 设置 Python 环境
-    - name: Set up Python
+    - name: 设置 Python 环境
       uses: actions/setup-python@v4
       with:
         python-version: '3.12' 
 
-    # 步骤 3: 安装依赖（如果有）
-    - name: Install dependencies
+    - name: 安装依赖
       run: |
         sudo apt-get update
         sudo apt-get install -y libjpeg-dev zlib1g-dev
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # 步骤 4: 运行 Python 脚本
-    - name: Run Python script
+    - name: 运行 Python 脚本
       run: |
         python lens.py
 
-    # 步骤 5: 克隆目标仓库
-    - name: Checkout target repository
+    - name: 克隆目标仓库
       uses: actions/checkout@v3
       with:
         repository: ${{ secrets.REPO }}  
         path: target-repo
         token: ${{ secrets.TOKEN }}  
 
-    # 步骤 6: 清空目标仓库
-
-    - name: Check if target repository is cloned
+    - name: 判断目标仓库是否存在
       run: |
         if [ ! -d "target-repo/.git" ]; then
           echo "Error: Target repository not cloned or .git directory missing"
           exit 1
         fi
   
-    - name: Clean target repository
+    - name: 清空目标仓库
       run: |
         cd target-repo
         find . ! -path './.git*' ! -path '.' -exec rm -rf {} +
 
-    # 步骤 7: 将生成的文件复制到目标仓库
-    - name: Copy generated files to target repository
+    - name: 将生成的文件复制到目标仓库
       run: |
         cp -r output/*  target-repo/  
 
-    # 步骤 8: 提交并推送更改到目标仓库
-    - name: Commit and push changes to target repository
+    - name: 提交并推送更改到目标仓库
       run: |
         cd target-repo
         git config --global user.name "github-actions[bot]"
