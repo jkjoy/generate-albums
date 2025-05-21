@@ -22,10 +22,12 @@
 >使用方法
  
 >1. 点击`Use this template`创建一个新的仓库
+<a href="https://github.com/new?template_name=generate-albums&template_owner=jkjoy" target="_blank">点击这里</a>
 
 在`action`中设置`secret`
+![](https://file.imsun.pw/image/f1427467-b143-4db0-b736-d80872c475e6.png)
 
-`TOKEN`为你的github token
+`TOKEN`为你的github token(获取方法https://github.com/settings/tokens 生成一个token)
 
 `REPO`为你想要生成相册的仓库名称 如`username/repo`
 

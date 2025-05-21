@@ -27,7 +27,7 @@ jobs:
 
     - name: 运行 Python 脚本
       run: |
-        python lens.py
+        python times.py
 
     - name: 克隆目标仓库
       uses: actions/checkout@v3
