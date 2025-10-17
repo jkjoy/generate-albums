@@ -27,7 +27,7 @@ jobs:
         sudo apt-get install -y libjpeg-dev zlib1g-dev
         python -m pip install --upgrade pip
         pip install jinja2 Pillow
-
+        
     - name: 运行 Python 脚本
       run: |
         python times.py
