@@ -21,7 +21,8 @@
 >[!TIP]
 >使用方法
  
->1. 点击`Use this template`创建一个新的仓库
+1. 点击`Use this template`创建一个新的仓库
+   
 <a href="https://github.com/new?template_name=generate-albums&template_owner=jkjoy" target="_blank">点击这里</a>
 
 在`action`中设置`secret`
@@ -31,9 +32,9 @@
 
 `REPO`为你想要生成相册的仓库名称 如`username/repo`
 
->2. `template`目录下为模板文件,可自行调整 标题 等
+2. `template`目录下为模板文件,可自行调整 标题 等
 
->3. `photos`为图片文件夹,照片上传到此文件夹中,会自动生成相册
+3. `photos`为图片文件夹,照片上传到此文件夹中,会自动生成相册
 
 photos 根目录下的照片默认标题为`分享生活`
 
@@ -47,3 +48,6 @@ photos 根目录下的照片默认标题为`分享生活`
 
 如果两者都没有则使用照片文件名为描述说明
 
+## 新项目
+使用S3 + vercel 部署相册
+https://github.com/jkjoy/S3-Images-vercel
