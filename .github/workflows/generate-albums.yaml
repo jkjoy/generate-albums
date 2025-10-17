@@ -1,9 +1,12 @@
 name: 脚本运行并推送到目标仓库
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main  
+    paths: 
+      - 'photos/**'      #自动检测photos目录下内容有改动则触发脚本
 
 jobs:
   run-python-and-push:
@@ -23,7 +26,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y libjpeg-dev zlib1g-dev
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install ﻿jinja2 Pillow
 
     - name: 运行 Python 脚本
       run: |
