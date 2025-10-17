@@ -60,6 +60,12 @@ jobs:
         cd target-repo
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    
+        # 检查是否有变更
+        if [[ -n $(git status --porcelain) ]]; then
         git add -f .
         git commit -m "Automated commit by GitHub Actions"
         git push
+        else
+        echo "没有需要提交的变更"
+        fi
